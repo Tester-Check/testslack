@@ -12,6 +12,11 @@ new_channel_name = ""
 common_params = {"token": LEGACY_TOKEN,
                  "validate": "true"}
 
+"""
+● Signup for Slack API and sign in
+● Generate API Token https://api.slack.com/custom-integrations/legacy-tokens
+● Please refer the API Doc @ https://api.slack.com/methods
+"""
 
 class TestSlackChannels(TestCase):
 
@@ -25,6 +30,7 @@ class TestSlackChannels(TestCase):
 
     @pytest.mark.order1
     def test1_create_channel(self):
+        """Create a new Channel"""
         print("name of the channel is: " + self.channel_name)
         self.params["name"] = self.channel_name
         resp = self.session.get(BASE_URL + "/api/channels.create", params=self.params)
@@ -43,6 +49,7 @@ class TestSlackChannels(TestCase):
 
     @pytest.mark.order2
     def test2_join_channel(self):
+        """Join the newly created Channel"""
         self.params['name'] = self.channel_name
         resp = self.session.post(BASE_URL + "/api/channels.join", params=self.params)
         assert resp.status_code == 200
@@ -56,6 +63,9 @@ class TestSlackChannels(TestCase):
 
     @pytest.mark.order3
     def test3_rename_channel(self):
+        """Rename the Channel and
+        List all Channels and Validate if the Channel name has changed successfully
+        """
         global new_channel_name
         new_channel_name = "newchannel" + str(random.randint(100000, 999999))
         self.params["channel"] = channel_id
@@ -79,6 +89,10 @@ class TestSlackChannels(TestCase):
 
     @pytest.mark.order4
     def test4_archive_channel(self):
+        """
+        Archive the Channel
+        Validate if the Channel is archived successfully
+        """
         params = {"token": LEGACY_TOKEN,
                   "channel": channel_id}
         resp = self.session.post(BASE_URL + "/api/channels.archive", params)
