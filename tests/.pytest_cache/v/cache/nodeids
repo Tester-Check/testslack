@@ -1,0 +1,6 @@
+[
+  "test_slack.py::TestSlack::test1_create_channel",
+  "test_slack.py::TestSlack::test2_join_channel",
+  "test_slack.py::TestSlack::test3_rename_channel",
+  "test_slack.py::TestSlack::test4_archive_channel"
+]

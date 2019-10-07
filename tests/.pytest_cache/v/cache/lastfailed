@@ -1,0 +1,5 @@
+{
+  "test2.py::TEst2": true,
+  "test2.py::TestCase": true,
+  "test_slack.py::TestSlack::test_archive_channel": true
+}
